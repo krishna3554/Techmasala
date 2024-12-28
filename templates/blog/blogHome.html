@@ -1,0 +1,57 @@
+{%extends 'base.html'%} {%block title%} Blog {%endblock title%} {% block js %}
+<script> let previews = document.getElementsByClassName('preview'); Array.from(previews).forEach((element) => { element.innerHTML = element.innerText }) </script>
+{% endblock js %} {% block blogactive %} {% endblock blogactive %} {%block body%} <div class="container my-3">
+    <h2>Coding Articles by Techmasala: <style>
+            h2 {
+                font-family: 'Nova Flat';
+                font-size: 35px;
+            }
+        </style>
+    </h2> {%for post in allPosts%} <div
+        class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 my-4 position-relative">
+        <div class="col p-4 d-flex flex-column position-static"> <strong
+                class="d-inline-block mb-2 text-primary">Article by - {{post.author}}</strong>
+            <h3 class="mb-0"><a class="text-dark" href="/blog/{{post.slug}}">
+                    <style>
+                        h3 {
+                            font-family: 'Nova Flat';
+                            font-size: 35px;
+                        }
+                    </style>{{post.title}}
+                </a></h3>
+            <div class="mb-1 text-muted">{{post.datetime}}</div>
+            <p class="card-text mb-auto">
+            <div>
+                <div class="preview">{{post.content| safe | truncatechars:300}}</div>
+            </div>
+            </p>
+            <div class="my-2"> <a href="/blog/{{post.slug}}"> <button class="button-34" role="button">Continue
+                        Reading</button>
+                    <style>
+                        /* CSS */
+                        .button-34 {
+                            background: #5E5DF0;
+                            border-radius: 999px;
+                            box-shadow: #5E5DF0 0 10px 20px -10px;
+                            box-sizing: border-box;
+                            color: #FFFFFF;
+                            cursor: pointer;
+                            font-family: Inter, Helvetica, "Apple Color Emoji", "Segoe UI Emoji", NotoColorEmoji, "Noto Color Emoji", "Segoe UI Symbol", "Android Emoji", EmojiSymbols, -apple-system, system-ui, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", sans-serif;
+                            font-size: 16px;
+                            font-weight: 700;
+                            line-height: 24px;
+                            opacity: 1;
+                            outline: 0 solid transparent;
+                            padding: 8px 18px;
+                            user-select: none;
+                            -webkit-user-select: none;
+                            touch-action: manipulation;
+                            width: fit-content;
+                            word-break: break-word;
+                            border: 0;
+                        }
+                    </style>
+                </a> </div>
+        </div>
+    </div> {%endfor%}
+</div> {%endblock body%}by following code the second and third card are created within it i want seperate card

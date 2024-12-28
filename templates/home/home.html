@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}
+  Home | Tech Masala
+{% endblock title %}
+
+{% block body %}
+  <!-- Hero Section -->
+  <section class="py-5 text-center container"> 
+    <div class="row py-lg-0">
+      <div class="col-lg-6 col-md-8 mx-auto">
+        <div class="col-md-6 mb-4 mx-auto">
+          <img 
+            class="rounded-circle img-fluid" 
+            alt="Tech Masala Logo" 
+            src="{% static 'Copy of Black and Blue Lighting Bolt Edm Music Logo.png' %}"
+          >
+        </div>
+        <h1 class="fw-light mb-3">Tech Masala</h1> 
+        <p class="lead text-muted mb-4">Express your views on tech and get the full ride of our website providing free platform for bloggers. Be the part of change.</p>
+        <div class="d-flex gap-3 justify-content-center">
+          <a href="/blog" class="button-34">Our Blogs</a>
+          <a href="{% url 'contact' %}" class="button-34">Contact Us</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blog Posts Grid -->
+  <div class="container mb-5">
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+      {% for post in allPosts %}
+        <div class="col">
+          <div class="card h-100 shadow-sm">
+            <img 
+    src="https://picsum.photos/1600/900?Technology" 
+    class="card-img-top" 
+    alt="iQoo Watch with over 100 sports modes, SpO2 tracking launched: Price, specifications" 
+    style="height: 200px; object-fit: cover;" 
+/>
+            <div class="card-body">
+              <h5 class="card-title">{{ post.title|default:'Blog Post Title' }}</h5>
+              <p class="card-text">{{ post.excerpt|default:'Blog post excerpt'|truncatechars:200 }}</p>
+            </div>
+            <div class="card-footer bg-transparent border-0 pb-3">
+              <a href="/blog" class="btn btn-primary">Continue Reading</a>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="text-muted py-5 bg-light">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8">
+          <p class="mb-1">We make change &copy; Techmasala, Support us by commenting on blogs!</p>
+          <p class="mb-0">
+            Want to know about us? 
+            <a href="{% url 'about' %}">Visit the About Us page</a> or read our 
+            <a href="{% url 'about' %}#getting-started">getting started guide</a>.
+          </p>
+        </div>
+        <div class="col-md-4 text-end">
+          <a href="#" class="btn btn-secondary btn-sm">Back to top</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <style>
+    .button-34 {
+      background: #5E5DF0;
+      border-radius: 999px;
+      box-shadow: #5E5DF0 0 10px 20px -10px;
+      box-sizing: border-box;
+      color: #FFFFFF;
+      cursor: pointer;
+      font-family: Inter, system-ui, sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 24px;
+      opacity: 1;
+      outline: 0 solid transparent;
+      padding: 8px 18px;
+      user-select: none;
+      touch-action: manipulation;
+      width: fit-content;
+      word-break: break-word;
+      border: 0;
+      text-decoration: none;
+      display: inline-block;
+      transition: all 0.2s ease;
+    }
+
+    .button-34:hover {
+      background: #4b4ac0;
+      color: #FFFFFF;
+    }
+
+    .card {
+      transition: transform 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+  </style>
+{% endblock body %}

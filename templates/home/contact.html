@@ -1,0 +1,56 @@
+{%extends 'base.html'%}
+{%block title%}
+   Contact
+{%endblock title%}
+{% block contactactive %} active {% endblock contactactive %}
+{%block body%}
+<div class="container">
+<h1><style>h1{ color: #7c795d; font-family: 'Trocchi', serif; font-size: 45px; font-weight: normal; line-height: 48px; margin: 2; position:relative; left:30px; top:10px;}
+h1 {text-align: center;}
+</style>Contact for Techmasala</h1>
+<form method="post" action="/contact">
+{% csrf_token %}
+  <div class="mb-3">
+    <label for="name" class="form-label"><style>h2 { font-family: 'Enriqueta', arial, serif; line-height: 1.25; margin: 0 0 10px; font-size: 40px; font-weight: bold; }</style>Name</label>
+    <input type="text" class="form-control" id="name" name="name"aria-describedby="name">
+  </div>
+  <div class="mb-3">
+    <label for="email" class="form-label">Email address</label>
+    <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp">
+    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+  </div>
+  <div class="mb-3">
+    <label for="phone" class="form-label">Phone number</label>
+    <input type="phone" class="form-control" name="phone" id="phone">
+  </div>
+  <div class="mb-3">
+    <label for="contant" class="form-label">How we can help you?</label>
+    <textarea class="form-control" name="content" id="content" cols="30" rows="3"></textarea>
+  </div>
+  <!-- HTML !-->
+    <button class="button-34" role="button">Submit</button>
+   <style> 
+    /* CSS */
+    .button-34 {
+      background: #5E5DF0;
+      border-radius: 999px;
+      box-shadow: #5E5DF0 0 10px 20px -10px;
+      box-sizing: border-box;
+      color: #FFFFFF;
+      cursor: pointer;
+      font-family: Inter,Helvetica,"Apple Color Emoji","Segoe UI Emoji",NotoColorEmoji,"Noto Color Emoji","Segoe UI Symbol","Android Emoji",EmojiSymbols,-apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue","Noto Sans",sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 24px;
+      opacity: 1;
+      outline: 0 solid transparent;
+      padding: 8px 18px;
+      user-select: none;
+      -webkit-user-select: none;
+      touch-action: manipulation;
+      width: fit-content;
+      word-break: break-word;
+      border: 0;
+    }</style>
+</form>
+</div>{%endblock body%}

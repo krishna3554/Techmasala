@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <title>{%block title%}{%endblock title%}</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/">Techmasala</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item {% block homeactive %}active{% endblock homeactive %}">
+          <a class="nav-link " aria-current="page" href="/">Home</a>
+        </li>
+        <li class="nav-item {% block aboutactive %}{% endblock aboutactive %}">
+          <a class="nav-link" href="/about">About</a>
+        </li>
+        <li class="nav-item {% block contactactive %}{% endblock contactactive %}">
+          <a class="nav-link" href="/contact">Contact</a>
+        </li>
+        <li class="nav-item {% block blogactive %}{% endblock blogactive %}">
+          <a class="nav-link" href="/blog">Blog</a>
+        </li>
+      </ul>
+      <form method="get" action="/search" class="d-flex mx-3">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="query" id="query">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+      {% if user.is_authenticated %}
+      <ul class="navbar-nav mr-2">
+    <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Welcome {{request.user}}
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="/logout">Logout</a></li>
+          </ul>
+        </li>
+      </ul>
+{% else %}
+      <button role="button" class="button-62" data-bs-toggle="modal" data-bs-target="#loginModal">
+        <style>
+          
+
+/* CSS */
+.button-62 {
+  background: linear-gradient(to bottom right, #EF4765, #FF9A5A);
+  border: 0;
+  border-radius: 12px;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: inline-block;
+  font-family: -apple-system,system-ui,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 2.5;
+  outline: transparent;
+  padding: 0 1rem;
+  text-align: center;
+  text-decoration: none;
+  transition: box-shadow .2s ease-in-out;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+}
+
+.button-62:not([disabled]):focus {
+  box-shadow: 0 0 .25rem rgba(0, 0, 0, 0.5), -.125rem -.125rem 1rem rgba(239, 71, 101, 0.5), .125rem .125rem 1rem rgba(255, 154, 90, 0.5);
+}
+
+.button-62:not([disabled]):hover {
+  box-shadow: 0 0 .25rem rgba(0, 0, 0, 0.5), -.125rem -.125rem 1rem rgba(239, 71, 101, 0.5), .125rem .125rem 1rem rgba(255, 154, 90, 0.5);
+}
+        </style>  LogIn
+</button>
+      <button role="button" class="button-62" data-bs-toggle="modal" data-bs-target="#signupModal">
+  SignUp
+  <style>
+    /* CSS */
+    .button-62 {
+      background: linear-gradient(to bottom right, #EF4765, #FF9A5A);
+      border: 0;
+      border-radius: 12px;
+      color: #FFFFFF;
+      cursor: pointer;
+      display: inline-block;
+      font-family: -apple-system,system-ui,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 2.5;
+      outline: transparent;
+      padding: 0 1rem;
+      text-align: center;
+      text-decoration: none;
+      transition: box-shadow .2s ease-in-out;
+      user-select: none;
+      -webkit-user-select: none;
+      touch-action: manipulation;
+      white-space: nowrap;
+      margin-left: 5px;
+    .button-62:not([disabled]):focus {
+      box-shadow: 0 0 .25rem rgba(0, 0, 0, 0.5), -.125rem -.125rem 1rem rgba(239, 71, 101, 0.5), .125rem .125rem 1rem rgba(255, 154, 90, 0.5);
+    }
+    
+    .button-62:not([disabled]):hover {
+      box-shadow: 0 0 .25rem rgba(0, 0, 0, 0.5), -.125rem -.125rem 1rem rgba(239, 71, 101, 0.5), .125rem .125rem 1rem rgba(255, 154, 90, 0.5);
+    }
+  </style>
+</button>
+
+    {% endif %}
+
+    </div>
+  </div>
+</nav>
+{% for message in messages %}
+<div class="alert alert-{{ message.tags }} mb-0 alert-dismissible fade show" role="alert">
+  <strong>Message: </strong> {{ message }}
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %}
+<!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="signupModal" tabindex="-1" aria-labelledby="signupModal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="signupModalTitle">SignUp Here</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      <form action='/signup' method='post'>
+        <div class="mb-3">
+  <label for="username" class="form-label">Username</label>
+  <input type="text" class="form-control" id="username" name="username" placeholder="Choose a unique username" required>
+</div>
+        <div class="mb-3">
+  <label for="fname" class="form-label">First Name</label>
+  <input type="text" class="form-control" id="fname" name="fname" placeholder="Write your first name" required>
+</div>
+        <div class="mb-3">
+  <label for="lname" class="form-label">Last Name</label>
+  <input type="text" class="form-control" id="lname" name="lname" placeholder="Write your last name" required>
+</div>
+<div class="mb-3">
+  <label for="email" class="form-label">Email address</label>
+  <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com" required>
+</div>
+<div class="mb-3">
+  <label for="pass1" class="form-label">Password</label>
+  <input type="password" class="form-control" id="pass1" name="pass1" placeholder="Enter the strong password" required>
+</div>
+<div class="mb-3">
+  <label for="pass2" class="form-label">Confirm Password</label>
+  <input type="password" class="form-control" id="pass2" name="pass2" placeholder="Enter the password again" required>
+<div class="modal-footer">
+ {% csrf_token %}
+<button type="submit" class="btn btn-primary ">SignUp</button>
+</form>
+</div>
+      </div>
+      
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--login modal-->
+<!-- Modal -->
+<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="loginModalTitle">LogIn Here</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      <form action='/login' method='post' >
+      <div class="mb-3">
+  <label for="username" class="form-label">Username</label>
+  <input type="text" class="form-control" id="loginusername" name="loginusername" placeholder="Username" required>
+</div>
+<div class="mb-3">
+  <label for="pass" class="form-label">Password</label>
+  <input type="password" class="form-control" id="loginpassword" name="loginpassword" placeholder="Enter the password" required>
+</div>
+{% csrf_token %}
+
+<button type="submit" class="btn btn-primary">LogIn</button>
+{% load socialaccount %}
+
+
+<div class="social-login">
+    <a href="{% provider_login_url 'google' %}" class="google-login-btn">
+        Login with Google
+    </a>
+</div>
+</form>
+</div>
+      </div>
+      
+        
+      </div>
+    </div>
+  </div>
+</div>
+{%block body%}{%endblock body%}
+
+{% block js %}{% endblock js %}
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js" integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/" crossorigin="anonymous"></script>
+    -->
+  </body>
+</html>
